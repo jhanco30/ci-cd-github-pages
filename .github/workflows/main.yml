@@ -1,19 +1,22 @@
-name: CI/CD Pipeline
+name: Deploy GitHub Pages
 
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write   # 🔥 ESTA LÍNEA ES LA CLAVE
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repo
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Deploy a GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
